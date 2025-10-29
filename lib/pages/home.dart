@@ -9,6 +9,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final CarouselController _controller = CarouselController(initialItem: 2);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -187,41 +189,50 @@ class _HomeState extends State<Home> {
               ],
             ),
             SizedBox(height: 5.0),
-            Row(
-              children: [
-                Card.outlined(
-                  elevation: 2.0,
-                  child: Container(
-                    width: 150,
-                    height: 150,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15.0),
-                      image: DecorationImage(
-                        image: AssetImage('assets/images/man.png'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(width: 10.0),
-                Card.outlined(
-                  elevation: 2.0,
-                  child: Container(
-                    width: 150,
-                    height: 150,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15.0),
-                      image: DecorationImage(
-                        image: AssetImage('assets/images/meditate.png'),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(width: 10.0),
-              ],
+            SizedBox(
+              height: 180.0,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.symmetric(horizontal: 5.0),
+                children: [
+                  SizedBox(width: 5.0),
+                  CardWidget(imagePath: 'images/man.png'),
+                  SizedBox(width: 5.0),
+                  CardWidget(imagePath: 'images/meditate.png'),
+                  SizedBox(width: 5.0),
+                  CardWidget(imagePath: 'images/treadmill.png'),
+                  SizedBox(width: 5.0),
+                  CardWidget(imagePath: 'images/bike.png'),
+                ],
+              ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class CardWidget extends StatelessWidget {
+  String imagePath = '';
+
+  CardWidget({super.key, required final imagePath}) {
+    this.imagePath = imagePath;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Card.outlined(
+      elevation: 2.0,
+      child: Container(
+        width: 160.0,
+        height: 160.0,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15.0),
+          image: DecorationImage(
+            image: AssetImage('assets/$imagePath'),
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );
