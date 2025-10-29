@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hymns/services/small_card_widget.dart';
 import 'package:hymns/services/support_widget.dart';
 
 class Home extends StatefulWidget {
@@ -196,43 +197,17 @@ class _HomeState extends State<Home> {
                 padding: EdgeInsets.symmetric(horizontal: 5.0),
                 children: [
                   SizedBox(width: 5.0),
-                  CardWidget(imagePath: 'images/man.png'),
+                  SmallCardWidget(imagePath: 'man.png'),
                   SizedBox(width: 5.0),
-                  CardWidget(imagePath: 'images/meditate.png'),
+                  SmallCardWidget(imagePath: 'bike.png'),
                   SizedBox(width: 5.0),
-                  CardWidget(imagePath: 'images/treadmill.png'),
+                  SmallCardWidget(imagePath: 'meditate.png'),
                   SizedBox(width: 5.0),
-                  CardWidget(imagePath: 'images/bike.png'),
+                  SmallCardWidget(imagePath: 'treadmill.png'),
                 ],
               ),
             ),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class CardWidget extends StatelessWidget {
-  String imagePath = '';
-
-  CardWidget({super.key, required final imagePath}) {
-    this.imagePath = imagePath;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Card.outlined(
-      elevation: 2.0,
-      child: Container(
-        width: 160.0,
-        height: 160.0,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15.0),
-          image: DecorationImage(
-            image: AssetImage('assets/$imagePath'),
-            fit: BoxFit.cover,
-          ),
         ),
       ),
     );
