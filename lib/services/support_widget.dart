@@ -12,8 +12,16 @@ class AppWidget {
   static TextStyle mediumTextStyle(double fontSize) {
     return TextStyle(
       fontSize: fontSize,
-      fontWeight: FontWeight.w400,
+      fontWeight: FontWeight.w500,
       color: Colors.black,
+    );
+  }
+
+  static TextStyle whiteBoldTextStyle(double fontSize) {
+    return TextStyle(
+      fontSize: fontSize,
+      fontWeight: FontWeight.bold,
+      color: Colors.white,
     );
   }
 }

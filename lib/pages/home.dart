@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hymns/services/section_head_line_text.dart';
 import 'package:hymns/services/small_card_widget.dart';
+import 'package:hymns/services/stats_widget_card.dart';
 import 'package:hymns/services/support_widget.dart';
 
 class Home extends StatefulWidget {
@@ -93,84 +95,16 @@ class _HomeState extends State<Home> {
                         Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Material(
-                              elevation: 2.0,
-                              borderRadius: BorderRadius.circular(20.0),
-                              child: Container(
-                                padding: EdgeInsets.all(20.0),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                  color: const Color.fromARGB(
-                                    255,
-                                    255,
-                                    255,
-                                    255,
-                                  ),
-                                ),
-                                margin: EdgeInsets.all(5.0),
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      "In Progress",
-                                      style: AppWidget.headlineStyle(20.0),
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "0",
-                                          style: AppWidget.headlineStyle(20.0),
-                                        ),
-                                        Text(
-                                          " Workouts",
-                                          style: AppWidget.mediumTextStyle(
-                                            15.0,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
+                            StatsWidgetCard(
+                              headlineText: "In Progress",
+                              valueText: "2",
+                              suffixText: " Workouts",
                             ),
                             SizedBox(height: 5.0),
-                            Material(
-                              elevation: 2.0,
-                              borderRadius: BorderRadius.circular(20.0),
-                              child: Container(
-                                padding: EdgeInsets.all(20.0),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                  color: const Color.fromARGB(
-                                    255,
-                                    255,
-                                    255,
-                                    255,
-                                  ),
-                                ),
-                                margin: EdgeInsets.all(5.0),
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      "Time Spent",
-                                      style: AppWidget.headlineStyle(20.0),
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "0.0",
-                                          style: AppWidget.headlineStyle(20.0),
-                                        ),
-                                        Text(
-                                          " Minutes",
-                                          style: AppWidget.mediumTextStyle(
-                                            15.0,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
+                            StatsWidgetCard(
+                              headlineText: "Time Spent",
+                              valueText: "20.0",
+                              suffixText: " minutes",
                             ),
                           ],
                         ),
@@ -181,32 +115,52 @@ class _HomeState extends State<Home> {
               ],
             ),
             SizedBox(height: 15.0),
-            Row(
-              children: [
-                Text(
-                  "Discover New Workouts",
-                  style: AppWidget.headlineStyle(20.0),
-                ),
-              ],
-            ),
+            SectionHeadLineText(headlineText: "Discover New Workouts"),
             SizedBox(height: 5.0),
             SizedBox(
-              height: 180.0,
+              height: 140.0,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 padding: EdgeInsets.symmetric(horizontal: 5.0),
                 children: [
                   SizedBox(width: 5.0),
-                  SmallCardWidget(imagePath: 'man.png'),
+                  SmallCardWidget(
+                    headlineText: "Full Body",
+                    workouts: 20,
+                    minutes: 140,
+                    bgColor: Color(0xfffcb74f),
+                    imagePath: 'man.png',
+                  ),
                   SizedBox(width: 5.0),
-                  SmallCardWidget(imagePath: 'bike.png'),
+                  SmallCardWidget(
+                    headlineText: "Bike Training",
+                    workouts: 9,
+                    minutes: 60,
+                    bgColor: Color(0xfff59884),
+                    imagePath: 'bike.png',
+                  ),
                   SizedBox(width: 5.0),
-                  SmallCardWidget(imagePath: 'meditate.png'),
+                  SmallCardWidget(
+                    headlineText: "Meditation",
+                    workouts: 8,
+                    minutes: 45,
+                    bgColor: Color(0xff9ad3bc),
+                    imagePath: 'meditate.png',
+                  ),
                   SizedBox(width: 5.0),
-                  SmallCardWidget(imagePath: 'treadmill.png'),
+                  SmallCardWidget(
+                    headlineText: "Treadmill",
+                    workouts: 3,
+                    minutes: 23,
+                    bgColor: Color(0xff9bb7d4),
+                    imagePath: 'treadmill.png',
+                  ),
                 ],
               ),
             ),
+            SizedBox(height: 10.0),
+            SectionHeadLineText(headlineText: "Discover New Workouts"),
+            SizedBox(height: 5.0),
           ],
         ),
       ),
