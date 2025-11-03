@@ -5,7 +5,38 @@ import 'package:hymns/services/stats_widget_card.dart';
 import 'package:hymns/services/support_widget.dart';
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+  var workoutList = [
+    {
+      "headlineText": "Full Body",
+      "workouts": 20,
+      "minutes": 140,
+      "bgColor": Color(0xfffcb74f),
+      "imagePath": 'man.png',
+    },
+    {
+      "headlineText": "Bike Training",
+      "workouts": 9,
+      "minutes": 60,
+      "bgColor": Color(0xfff59884),
+      "imagePath": 'bike.png',
+    },
+    {
+      "headlineText": "Meditation",
+      "workouts": 8,
+      "minutes": 45,
+      "bgColor": Color(0xff9ad3bc),
+      "imagePath": 'meditate.png',
+    },
+    {
+      "headlineText": "Treadmill",
+      "workouts": 0000783,
+      "minutes": 23,
+      "bgColor": Color(0xff9bb7d4),
+      "imagePath": 'treadmill.png',
+    },
+  ];
+
+  Home({super.key});
 
   @override
   State<Home> createState() => _HomeState();
@@ -123,43 +154,22 @@ class _HomeState extends State<Home> {
                 scrollDirection: Axis.horizontal,
                 padding: EdgeInsets.symmetric(horizontal: 5.0),
                 children: [
-                  SizedBox(width: 5.0),
-                  SmallCardWidget(
-                    headlineText: "Full Body",
-                    workouts: 20,
-                    minutes: 140,
-                    bgColor: Color(0xfffcb74f),
-                    imagePath: 'man.png',
-                  ),
-                  SizedBox(width: 5.0),
-                  SmallCardWidget(
-                    headlineText: "Bike Training",
-                    workouts: 9,
-                    minutes: 60,
-                    bgColor: Color(0xfff59884),
-                    imagePath: 'bike.png',
-                  ),
-                  SizedBox(width: 5.0),
-                  SmallCardWidget(
-                    headlineText: "Meditation",
-                    workouts: 8,
-                    minutes: 45,
-                    bgColor: Color(0xff9ad3bc),
-                    imagePath: 'meditate.png',
-                  ),
-                  SizedBox(width: 5.0),
-                  SmallCardWidget(
-                    headlineText: "Treadmill",
-                    workouts: 3,
-                    minutes: 23,
-                    bgColor: Color(0xff9bb7d4),
-                    imagePath: 'treadmill.png',
-                  ),
+                  for (final workout in widget.workoutList) ...[
+                    SizedBox(width: 5.0),
+                    SmallCardWidget(
+                      headlineText: workout['headlineText'] as String,
+                      workouts: workout['workouts'] as int,
+                      minutes: workout['minutes'] as int,
+                      bgColor: workout['bgColor'] as Color,
+                      imagePath: workout['imagePath'] as String,
+                    ),
+                    SizedBox(width: 5.0),
+                  ],
                 ],
               ),
             ),
             SizedBox(height: 10.0),
-            SectionHeadLineText(headlineText: "Discover New Workouts"),
+            SectionHeadLineText(headlineText: "Top Workouts"),
             SizedBox(height: 5.0),
           ],
         ),
