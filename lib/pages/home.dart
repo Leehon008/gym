@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hymns/pages/profile_screen.dart';
 import 'package:hymns/pages/workout_screen.dart';
+import 'package:hymns/pages/workouts_screen.dart';
 
 class Home extends StatefulWidget {
   final workoutList = [
@@ -63,7 +65,7 @@ class _HomeState extends State<Home> {
   // Example pages
   final List<Widget> _pages = [
     HomeScreen(),
-    const WorkoutScreen(),
+    WorkoutsScreen(),
     const ProfileScreen(),
   ];
 
@@ -108,9 +110,9 @@ class _HomeState extends State<Home> {
                 label: 'Home',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.search_rounded),
-                activeIcon: Icon(Icons.search),
-                label: 'Search',
+                icon: Icon(Icons.sports_gymnastics),
+                activeIcon: Icon(Icons.sports_gymnastics_rounded),
+                label: 'Workouts',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.person_outline_rounded),
