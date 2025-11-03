@@ -1,3 +1,4 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:hymns/pages/profile_screen.dart';
 import 'package:hymns/pages/workout_screen.dart';
@@ -75,48 +76,25 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pages[_selectedIndex],
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 123, 32, 32),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withAlpha((0.3 * 255).round()),
-              blurRadius: 10,
-              offset: const Offset(0, -2),
-            ),
-          ],
-          borderRadius: const BorderRadius.all(Radius.circular(20.0)),
-        ),
-        child: ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(20.0)),
-          child: BottomNavigationBar(
-            currentIndex: _selectedIndex,
-            onTap: _onItemTapped,
-            elevation: 0,
-            backgroundColor: const Color(0xfff3e5f5),
-            selectedItemColor: Colors.deepPurple,
-            unselectedItemColor: Colors.grey.shade600,
-            showUnselectedLabels: true,
-            type: BottomNavigationBarType.fixed,
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home_rounded),
-                activeIcon: Icon(Icons.home_filled),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.sports_gymnastics),
-                activeIcon: Icon(Icons.sports_gymnastics_rounded),
-                label: 'Workouts',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person_outline_rounded),
-                activeIcon: Icon(Icons.person),
-                label: 'Profile',
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Colors.blueAccent,
+        items: <Widget>[
+          Icon(
+            Icons.h_mobiledata,
+            size: 30,
+            shadows: [
+              Shadow(
+                color: Colors.black26,
+                blurRadius: 5,
+                offset: Offset(0, 12),
               ),
             ],
           ),
-        ),
+          Icon(Icons.sports_gymnastics, size: 30),
+          Icon(Icons.person_rounded, size: 30),
+        ],
+        onTap: _onItemTapped,
+        index: _selectedIndex,
       ),
     );
   }
