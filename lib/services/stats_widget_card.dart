@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:hymns/services/support_widget.dart';
 
 class StatsWidgetCard extends StatelessWidget {
-  String headlineText = '';
-  String valueText = '';
-  String suffixText = '';
+  final String headlineText;
+  final String valueText;
+  final String suffixText;
 
-  StatsWidgetCard({
+  const StatsWidgetCard({
     super.key,
     required this.headlineText,
     required this.valueText,

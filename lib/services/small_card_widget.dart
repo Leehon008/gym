@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:hymns/services/support_widget.dart';
 
 class SmallCardWidget extends StatefulWidget {
-  var workoutList = [{}];
+  final List workoutList;
   final Axis scrollDirection;
 
-  SmallCardWidget(
-    this.workoutList, {
+  const SmallCardWidget({
+    required this.workoutList,
     this.scrollDirection = Axis.horizontal,
     super.key,
   });

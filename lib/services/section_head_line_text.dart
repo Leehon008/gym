@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:hymns/services/support_widget.dart';
 
 class SectionHeadLineText extends StatelessWidget {
-  String headlineText = "";
-  SectionHeadLineText({super.key, required this.headlineText}) {
-    headlineText = headlineText;
-  }
+  final String headlineText;
+
+  const SectionHeadLineText({super.key, required this.headlineText});
 
   @override
   Widget build(BuildContext context) {

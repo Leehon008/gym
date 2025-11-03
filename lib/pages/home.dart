@@ -60,7 +60,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final CarouselController _controller = CarouselController(initialItem: 2);
+  // final CarouselController __controller = CarouselController(initialItem: 2);
 
   @override
   Widget build(BuildContext context) {
@@ -167,10 +167,7 @@ class _HomeState extends State<Home> {
             SizedBox(height: 5.0),
             SizedBox(
               height: 140.0,
-              child: SmallCardWidget(
-                widget.workoutList,
-                // scrollDirection: Axis.vertical,
-              ),
+              child: SmallCardWidget(workoutList: widget.workoutList),
             ),
             SizedBox(height: 10.0),
             SectionHeadLineText(headlineText: "Top Workouts"),
@@ -178,7 +175,7 @@ class _HomeState extends State<Home> {
             SizedBox(
               height: 200.0,
               child: SmallCardWidget(
-                widget.topWorkoutList,
+                workoutList: widget.topWorkoutList,
                 scrollDirection: Axis.vertical,
               ),
             ),
