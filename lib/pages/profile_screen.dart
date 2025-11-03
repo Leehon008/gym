@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hymns/services/support_widget.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -16,7 +17,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         centerTitle: false,
         elevation: 0,
         foregroundColor: const Color.fromARGB(255, 0, 0, 0),
-        title: const Text("Profile"),
+        title: Text("Profile", style: AppWidget.headlineStyle(24.0)),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings_outlined),
