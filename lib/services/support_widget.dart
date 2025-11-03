@@ -9,19 +9,19 @@ class AppWidget {
     );
   }
 
-  static TextStyle mediumTextStyle(double fontSize) {
+  static TextStyle mediumTextStyle(double fontSize, [Color? textColor]) {
     return TextStyle(
       fontSize: fontSize,
       fontWeight: FontWeight.w500,
-      color: Colors.black,
+      color: textColor ?? Colors.black,
     );
   }
 
-  static TextStyle whiteBoldTextStyle(double fontSize) {
+  static TextStyle whiteBoldTextStyle(double fontSize, [Color? textColor]) {
     return TextStyle(
       fontSize: fontSize,
       fontWeight: FontWeight.bold,
-      color: Colors.white,
+      color: textColor ?? Colors.white,
     );
   }
 }
