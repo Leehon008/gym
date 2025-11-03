@@ -63,11 +63,7 @@ class _HomeState extends State<Home> {
   int _selectedIndex = 0;
 
   // Example pages
-  final List<Widget> _pages = [
-    HomeScreen(),
-    WorkoutsScreen(),
-    const ProfileScreen(),
-  ];
+  final List<Widget> _pages = [HomeScreen(), WorkoutsScreen(), ProfileScreen()];
 
   void _onItemTapped(int index) {
     setState(() {
