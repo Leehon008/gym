@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hymns/services/section_head_line_text.dart';
-import 'package:hymns/services/small_card_widget.dart';
-import 'package:hymns/services/stats_widget_card.dart';
-import 'package:hymns/services/support_widget.dart';
 
 class ProfileScreen extends StatefulWidget {
-  ProfileScreen({super.key});
+  const ProfileScreen({super.key});
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -14,71 +10,120 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.all(2.0),
-        child: Container(
-          margin: EdgeInsets.all(12.0),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    children: [
-                      Text("Hi, Lewis", style: AppWidget.headlineStyle(24.0)),
-                      Text(
-                        "Let's update your Profile",
-                        style: AppWidget.headlineStyle(18.0),
-                      ),
-                    ],
-                  ),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(60.0),
-                    child: Image(
-                      image: AssetImage('assets/images/profile.png'),
-                      width: 80,
-                      height: 80,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 15.0),
-              Container(
-                padding: EdgeInsets.all(20.0),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20.0),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withAlpha((0.1 * 255).round()),
-                      blurRadius: 10,
-                      offset: Offset(0, 4),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  children: [
-                    SectionHeadLineText(headlineText: "Your Plans"),
-                    SizedBox(height: 10.0),
-                    InputDatePickerFormField(
-                      firstDate: DateTime.now().subtract(
-                        Duration(days: 365 * 18),
-                      ),
-                      lastDate: DateTime(2100),
-                      initialDate: DateTime.now().subtract(
-                        Duration(days: 365 * 18),
-                      ),
-                      fieldLabelText: 'Select your date of birth',
-                    ),
-                    SizedBox(height: 20.0),
-                  ],
-                ),
-              ),
-            ],
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        centerTitle: false,
+        elevation: 0,
+        foregroundColor: const Color.fromARGB(255, 0, 0, 0),
+        title: const Text("Profile"),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings_outlined),
+            onPressed: () {},
           ),
+        ],
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Column(
+          children: [
+            const ProfilePic(image: 'assets/images/profile.png'),
+            Text("Lewis Honye", style: Theme.of(context).textTheme.titleLarge),
+            const Divider(height: 16.0 * 2),
+            const Info(infoKey: "User ID", info: "@lee.me"),
+            const Info(infoKey: "Location", info: "New York, NYC"),
+            const Info(infoKey: "Phone", info: "(239) 555-0108"),
+            const Info(infoKey: "Email Address", info: "demo@mail.com"),
+            const SizedBox(height: 16.0),
+            Align(
+              alignment: Alignment.centerRight,
+              child: SizedBox(
+                width: 160,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF00BF6D),
+                    foregroundColor: Colors.white,
+                    minimumSize: const Size(double.infinity, 48),
+                    shape: const StadiumBorder(),
+                  ),
+                  onPressed: () {},
+                  child: const Text("Edit profile"),
+                ),
+              ),
+            ),
+          ],
         ),
+      ),
+    );
+  }
+}
+
+class ProfilePic extends StatelessWidget {
+  const ProfilePic({
+    super.key,
+    required this.image,
+    this.isShowPhotoUpload = false,
+    this.imageUploadBtnPress,
+  });
+
+  final String image;
+  final bool isShowPhotoUpload;
+  final VoidCallback? imageUploadBtnPress;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16.0),
+      margin: const EdgeInsets.symmetric(vertical: 16.0),
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        border: Border.all(
+          color: Theme.of(
+            context,
+          ).textTheme.bodyLarge!.color!.withOpacity(0.08),
+        ),
+      ),
+      child: Stack(
+        alignment: Alignment.bottomRight,
+        children: [
+          CircleAvatar(radius: 50, backgroundImage: AssetImage(image)),
+          InkWell(
+            onTap: imageUploadBtnPress,
+            child: CircleAvatar(
+              radius: 13,
+              backgroundColor: Theme.of(context).primaryColor,
+              child: const Icon(Icons.add, color: Colors.white, size: 20),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class Info extends StatelessWidget {
+  const Info({super.key, required this.infoKey, required this.info});
+
+  final String infoKey, info;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            infoKey,
+            style: TextStyle(
+              color: Theme.of(
+                context,
+              ).textTheme.bodyLarge!.color!.withOpacity(0.8),
+            ),
+          ),
+          Text(info),
+        ],
       ),
     );
   }

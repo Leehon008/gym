@@ -81,7 +81,6 @@ class _HomeState extends State<Home> {
           boxShadow: [
             BoxShadow(
               color: Colors.black.withAlpha((0.3 * 255).round()),
-
               blurRadius: 10,
               offset: const Offset(0, -2),
             ),
