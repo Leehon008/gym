@@ -29,7 +29,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: Column(
           children: [
             const ProfilePic(image: 'assets/images/profile.png'),
-            Text("Lewis Honye", style: Theme.of(context).textTheme.titleLarge),
+            Text("Lewis", style: Theme.of(context).textTheme.titleLarge),
             const Divider(height: 16.0 * 2),
             const Info(infoKey: "User ID", info: "@lee.me"),
             const Info(infoKey: "Location", info: "New York, NYC"),
