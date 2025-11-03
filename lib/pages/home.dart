@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hymns/pages/workout_screen.dart';
 import 'package:hymns/services/section_head_line_text.dart';
 import 'package:hymns/services/small_card_widget.dart';
 import 'package:hymns/services/stats_widget_card.dart';
@@ -61,125 +62,66 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   // final CarouselController __controller = CarouselController(initialItem: 2);
+  int _selectedIndex = 0;
+
+  // Example pages
+  final List<Widget> _pages = [
+    HomeScreen(),
+    const WorkoutScreen(),
+    const ProfileScreen(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-      //   title: Text('Home Page'),
-      // ),
-      body: Container(
-        margin: EdgeInsets.all(20.0),
-        child: Column(
-          children: [
-            SizedBox(height: 35.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  children: [
-                    Text("Hi, Lewis", style: AppWidget.headlineStyle(24.0)),
-                    Text(
-                      "Let's check your activity",
-                      style: AppWidget.headlineStyle(18.0),
-                    ),
-                  ],
-                ),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(60.0),
-                  child: Image(
-                    image: AssetImage('assets/images/profile.png'),
-                    width: 80,
-                    height: 80,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 15.0),
-            Row(
-              children: [
-                Row(
-                  spacing: 20.0,
-                  children: [
-                    Column(
-                      children: [
-                        Material(
-                          elevation: 2.0,
-                          borderRadius: BorderRadius.circular(20.0),
-
-                          child: Container(
-                            padding: EdgeInsets.all(20.0),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20.0),
-                              color: const Color.fromARGB(255, 255, 255, 255),
-                            ),
-                            margin: EdgeInsets.all(5.0),
-                            child: Column(
-                              children: [
-                                Text(
-                                  "Finished",
-                                  style: AppWidget.headlineStyle(20.0),
-                                ),
-                                SizedBox(height: 10.0),
-                                Text(
-                                  "12",
-                                  style: AppWidget.mediumTextStyle(35.0),
-                                ),
-                                SizedBox(height: 10.0),
-                                Text(
-                                  "Completed\n Workouts",
-                                  style: AppWidget.mediumTextStyle(16.0),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            StatsWidgetCard(
-                              headlineText: "In Progress",
-                              valueText: "2",
-                              suffixText: " Workouts",
-                            ),
-                            SizedBox(height: 5.0),
-                            StatsWidgetCard(
-                              headlineText: "Time Spent",
-                              valueText: "20.0",
-                              suffixText: " minutes",
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            SizedBox(height: 15.0),
-            SectionHeadLineText(headlineText: "Discover New Workouts"),
-            SizedBox(height: 5.0),
-            SizedBox(
-              height: 140.0,
-              child: SmallCardWidget(workoutList: widget.workoutList),
-            ),
-            SizedBox(height: 10.0),
-            SectionHeadLineText(headlineText: "Top Workouts"),
-            SizedBox(height: 5.0),
-            SizedBox(
-              height: 200.0,
-              child: SmallCardWidget(
-                workoutList: widget.topWorkoutList,
-                scrollDirection: Axis.vertical,
-              ),
+      body: _pages[_selectedIndex],
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: const Color.fromARGB(255, 123, 32, 32),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.3),
+              blurRadius: 10,
+              offset: const Offset(0, -2),
             ),
           ],
+          borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+        ),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+          child: BottomNavigationBar(
+            currentIndex: _selectedIndex,
+            onTap: _onItemTapped,
+            elevation: 0,
+            backgroundColor: const Color(0xfff3e5f5),
+            selectedItemColor: Colors.deepPurple,
+            unselectedItemColor: Colors.grey.shade600,
+            showUnselectedLabels: true,
+            type: BottomNavigationBarType.fixed,
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home_rounded),
+                activeIcon: Icon(Icons.home_filled),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.search_rounded),
+                activeIcon: Icon(Icons.search),
+                label: 'Search',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.person_outline_rounded),
+                activeIcon: Icon(Icons.person),
+                label: 'Profile',
+              ),
+            ],
+          ),
         ),
       ),
     );
